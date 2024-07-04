@@ -4,9 +4,26 @@
   box-sizing: border-box;
 }
 
+:root {
+  --bg-color: #f3efec;
+  --text-color: #312a4e;
+  --accent-color: #ffab6b;
+  --main-font: Raleway;
+  --accent-font: "STIX Two Text";
+}
+
 .page {
   min-inline-size: 360px;
   margin: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--main-font, sans-serif);
+}
+
+.theme_dark {
+  --bg-color: #171717;
+  --text-color: #b3b3b3;
+  --accent-color: transparent;
 }
 
 p,
@@ -19,4 +36,233 @@ ol,
 li,
 figure {
   margin: 0;
+}
+
+a:focus,
+button:focus {
+  outline: none;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 1px solid var(--text-color);
+}
+
+.header {
+  padding-top: 10%;
+}
+
+.header__title {
+  font-size: clamp(3.75rem, 2.5rem + 5.5556vw, 7.5rem);
+  margin-bottom: 40px;
+}
+
+.header__menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  padding-block: 20px;
+}
+
+.header__theme-toggler {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+}
+
+.header__theme-button {
+  position: relative;
+  border: none;
+  font-family: inherit;
+  color: currentColor;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 0;
+  background-color: transparent;
+}
+
+.header__theme-button:hover {
+  text-decoration: underline;
+}
+
+.header__theme-button_is-active {
+  font-weight: 700;
+}
+
+button:disabled {
+  pointer-events: none;
+}
+
+.header__theme-button_is-active::after {
+  content: "";
+  position: absolute;
+  left: -4px;
+  bottom: 0.3ch;
+  width: calc(100% + 2 * 3px);
+  height: 0.5ch;
+  z-index: -1;
+  background-color: var(--accent-color);
+}
+
+.theme_dark .header__theme-button_is-active::after {
+  background-image: url("../images/pattern.svg");
+}
+
+.heading {
+  font-family: var(--accent-font, serif);
+  font-weight: 600;
+  text-align: center;
+  line-height: 90%;
+}
+
+.content-section {
+  padding-right: 5vi;
+  padding-left: 5vi;
+}
+
+.content__title {
+  line-height: 27px;
+  font-size: 30px;
+  margin: 7% 0 2.5% 0;
+}
+
+.content__text-block {
+  font-size: 18px;
+}
+
+.content__text-block .content__paragraph:not(:last-of-type) {
+  margin-bottom: 1.5em;
+}
+
+.content__text-block_type_first-lettered
+  .content__paragraph:first-child::first-letter {
+  background-color: var(--accent-color);
+  padding: 0 4px 0;
+  margin-right: 1px;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 35.22px;
+}
+
+.theme_dark
+  .content__text-block_type_first-lettered
+  .content__paragraph:first-child::first-letter {
+  border: 1px solid var(--text-color);
+}
+
+.content-link {
+  color: currentColor;
+}
+
+.content__blockquote {
+  width: 75%;
+  font-style: italic;
+  line-height: 36px;
+  margin: 0 auto 1.5em;
+}
+
+.content__figure {
+  margin: 7% auto;
+  width: calc(100% + 2 * 5vi);
+  position: relative;
+  left: calc(-5vi);
+}
+
+.content__picture {
+  width: 100%;
+}
+
+.content__picture-caption {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+  font-size: 18px;
+  border-bottom: 1px solid currentColor;
+  object-fit: cover;
+  object-position: center;
+}
+
+.content__card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 7%;
+  aspect-ratio: 4 / 3;
+  border: 1px solid currentColor;
+}
+
+.content__card-title {
+  font-size: 60px;
+  line-height: 54px;
+}
+
+.content__card-subtitle {
+  line-height: 21px;
+  font-size: 18px;
+}
+
+.colored-text {
+  position: relative;
+  display: inline-block;
+}
+
+.colored-text::after {
+  content: "";
+  position: absolute;
+  left: -4px;
+  bottom: 0.3ch;
+  width: calc(100% + 2 * 3px);
+  height: 0.5ch;
+  z-index: -1;
+  background-color: var(--accent-color);
+}
+
+.theme_dark .colored-text::after {
+  background-image: url("../images/pattern.svg");
+}
+
+.content__list {
+  list-style-type: none;
+  padding: 0 0 0 40px;
+}
+
+.content__list li {
+  position: relative;
+}
+
+.content__list li:not(:last-of-type) {
+  margin-bottom: 10px;
+}
+
+li::before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-image: url("../images/marker-light.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  left: -25px;
+  top: 11%;
+}
+
+.theme_dark li::before {
+  background-image: url("../images/marker-dark.svg");
+}
+
+.footer {
+  text-align: center;
+  margin-top: 10%;
+  padding: 2.5%;
+  border-top: 1px solid var(--text-color);
+}
+
+.footer__copyright {
+  font-size: 18px;
 }
